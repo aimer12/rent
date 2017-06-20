@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+类名 -->
+<mapper namespace="com.my.RentalDao">
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+    <select id="getRentals" resultType="Rental">
+        select id, hood, rental, type, area, deractor, district, street, create_time, publisher, html  from rent
+    </select>
+    <insert id ="addRental" useGeneratedKeys="true" parameterType="com.my.Rental" keyProperty="id">
+        insert into rent(hood, rental, type, area, deractor, district, street, create_time, publisher, html) values( #{hood}, #{rental}, #{type}, #{area}, #{deractor}, #{district}, #{street}, #{create_time}, #{publisher}, #{html})
+    </insert>
+    <insert id="addRentals" useGeneratedKeys="true" parameterType="java.util.List">
+        insert into rent(hood, rental, type, area, deractor, district, street, create_time, publisher, html) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.hood}, #{item.rental}, #{item.type}, #{item.area}, #{item.deractor}, #{item.district}, #{item.street},
+            #{item.create_time}, #{item.publisher}, #{item.html})
+        </foreach>
+    </insert>
+</mapper>
