@@ -1,8 +1,10 @@
 package com.my;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,34 +21,29 @@ public class GetInfo {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         RentalDao rentalDao = ctx.getBean("rentalDao", RentalDao.class);
 //        process(url,rentalDao,"com.my.RentalItem58");
-        process(url,rentalDao,"com.my.RentalItem58");
+        RentalItem r = ctx.getBean(RentalItem58.class);
+        process(url, rentalDao,r );
 
 
         }
 
-    public static void process(String url,RentalDao rentalDao,String className)  {
+    public static void process(String url,RentalDao rentalDao, RentalItem rentalItem)  {
+
 
         List<String> links = new ArrayList<String>();
         int page = 1;
 
         try {
-            Class<?> threadClazz = Class.forName(className);
-            Method mparse = threadClazz.getMethod("parse", String.class);
-            Method mlinks = threadClazz.getMethod("getlinks", String.class);
-            Method murls = threadClazz.getMethod("geturls", String.class);
-
-
-            links =  (List<String>)mlinks.invoke(null,url);
+            links =  rentalItem.geturls(url);
             System.out.println(links.size());
             for (String link : links) {
                 System.out.println("start page: " + page );
-
 //                List<String> urls = RentalItem58.geturls(link);
-                List<String> urls = (List<String>)murls.invoke(null, link);
+                List<String> urls = rentalItem.getlinks(link);
 
                 List<Rental> rentals = new ArrayList<Rental>();
                 for (String u : urls) {
-                    Rental rental =  (Rental) mparse.invoke(null, u);
+                    Rental rental =  rentalItem.parse(u);
                     if(!(rental ==null)){
                         rentals.add(rental);}
                 }
