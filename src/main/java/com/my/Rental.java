@@ -12,12 +12,31 @@ public class Rental {
     private Integer rental;
     private String type;
     private Integer area;
-    private String deractor;
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
+
+    private String mode;
     private String district;
     private String street;
     private Timestamp create_time;
     private String publisher;
     private String html;
+    private String web;
+
 
     public Integer getId() {
         return id;
@@ -59,13 +78,6 @@ public class Rental {
         this.area = area;
     }
 
-    public String getDeractor() {
-        return deractor;
-    }
-
-    public void setDeractor(String deractor) {
-        this.deractor = deractor;
-    }
 
     public String getDistrict() {
         return district;

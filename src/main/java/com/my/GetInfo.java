@@ -21,13 +21,13 @@ import java.util.List;
 public class GetInfo {
 
     public static void main(String[] args) {
-        String url = "http://gz.58.com/chuzu/pn80/";
+        String url = "http://gz.58.com/chuzu/pn51/";
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         RentalDao rentalDao = ctx.getBean("rentalDao", RentalDao.class);
 
         List<String> links = new ArrayList<String>();
-        int page = 80;
+        int page = 51;
 
         try {
             links = RentalItem.getlinks(url);

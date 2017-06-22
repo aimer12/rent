@@ -81,6 +81,7 @@ public class RentalItem {
 
 
             rentalinfo.setType(type);
+            rentalinfo.setWeb("58");
 //            System.out.println(type);
 //            System.out.println(area);
 //            System.out.println(deractor);
