@@ -1,5 +1,6 @@
 package com.my;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
@@ -12,6 +13,31 @@ public class Rental {
     private Integer rental;
     private String type;
     private Integer area;
+    private BigDecimal pointX;
+    private BigDecimal pointY;
+    private String mode;
+    private String district;
+    private String street;
+    private Timestamp create_time;
+    private String publisher;
+    private String html;
+    private String web;
+
+    public BigDecimal getPointX() {
+        return pointX;
+    }
+
+    public void setPointX(BigDecimal pointX) {
+        this.pointX = pointX;
+    }
+
+    public BigDecimal getPointY() {
+        return pointY;
+    }
+
+    public void setPointY(BigDecimal pointY) {
+        this.pointY = pointY;
+    }
 
     public String getMode() {
         return mode;
@@ -29,13 +55,7 @@ public class Rental {
         this.web = web;
     }
 
-    private String mode;
-    private String district;
-    private String street;
-    private Timestamp create_time;
-    private String publisher;
-    private String html;
-    private String web;
+
 
 
     public Integer getId() {

@@ -10,10 +10,10 @@
         insert into rent(hood, rental, type, area, mode, district, street, create_time, publisher, html) values( #{hood}, #{rental}, #{type}, #{area}, #{deractor}, #{district}, #{street}, #{create_time}, #{publisher}, #{html},#{item.web})
     </insert>
     <insert id="addRentals" useGeneratedKeys="true" parameterType="java.util.List">
-        insert into rent(hood, rental, type, area, mode, district, street, create_time, publisher, html, web) values
+        insert into rent(hood, rental, type, area, mode, district, street, create_time, publisher, html, web, pointX, pointY) values
         <foreach collection="list" item="item" index="index" separator=",">
             (#{item.hood}, #{item.rental}, #{item.type}, #{item.area}, #{item.mode}, #{item.district}, #{item.street},
-            #{item.create_time}, #{item.publisher}, #{item.html}, #{item.web})
+            #{item.create_time}, #{item.publisher}, #{item.html}, #{item.web}, #{item.pointX}, #{item.pointY})
         </foreach>
     </insert>
 </mapper>
