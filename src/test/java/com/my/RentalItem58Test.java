@@ -29,7 +29,8 @@ public class RentalItem58Test {
     @Test
     public void getRentalItem(){
         String url = "http://gz.58.com/zufang/28016037172043x.shtml";
-        Rental r = RentalItem58.parse(url);
+        RentalItem58 rentalItem58 = new RentalItem58();
+        Rental r = rentalItem58.parse(url);
         r.setPointX(new BigDecimal(113.36626434326171875000));
         r.setPointY(new BigDecimal(23.13913154602050781250));
         System.out.println(new BigDecimal(113.36626434326171875000));

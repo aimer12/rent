@@ -5,7 +5,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -19,9 +23,11 @@ import java.util.regex.Pattern;
 /**
  * Created by Administrator on 2017/6/14.
  */
-public class RentalItem58 {
 
-     public static  Rental parse(String url) {
+@Configuration
+public class RentalItem58 implements RentalItem {
+
+     public  Rental parse(String url) {
 
         Rental rentalinfo = new Rental();
         try {
@@ -99,7 +105,7 @@ public class RentalItem58 {
         return rentalinfo;
     }
 
-    public static List<String> geturls(String url) throws IOException {
+    public List<String> geturls(String url) throws IOException {
         List<String> urls = new ArrayList<String>();
         Document doc = Jsoup.connect(url).get();
         List<Element> elements = doc.getElementsByClass("des");
@@ -109,12 +115,12 @@ public class RentalItem58 {
         return urls;
     }
 
-    public static List<String> getlinks(String url) throws IOException {
+    public  List<String> getlinks(String url) throws IOException {
         List<String> links = new ArrayList<String>();
         String link = null;
         links.add(url);
         try {
-        while(links.size()< 50){
+        while(links.size()< 1){
             Document doc = Jsoup.connect(links.get(links.size()-1)).get();
             Element element = doc.getElementsByClass("next").get(0);
             link = element.attr("href");
